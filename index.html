@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Website</title>
+  <style>
+    /* Styles simples et responsives */
+    :root{ --accent:#6c5ce7; --bg:#f7f7fb; --card:#ffffff; --text:#222 }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:var(--text);}
+    header{background:linear-gradient(90deg,var(--accent),#a29bfe); color:white; padding:2rem 1rem}
+    .container{max-width:1000px; margin:0 auto}
+    nav{display:flex; gap:1rem; align-items:center; justify-content:space-between}
+    nav .brand{font-weight:700}
+    nav a{color:rgba(255,255,255,0.95); text-decoration:none}
+
+    .hero{padding:3rem 1rem; text-align:center}
+    .hero h1{margin:0 0 .5rem; font-size:clamp(1.5rem,3.5vw,2.5rem)}
+    .hero p{margin:0; opacity:.95}
+
+    main{padding:2rem 1rem}
+    .grid{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card); padding:1rem; border-radius:10px; box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .card h3{margin-top:0}
+
+    footer{padding:1.5rem 1rem; text-align:center; font-size:.9rem; color:#555}
+
+    /* formulaire simple */
+    form{display:grid; gap:.5rem}
+    input, textarea{padding:.6rem .8rem; border:1px solid #e6e9ef; border-radius:8px; font:inherit}
+    button{background:var(--accent); color:white; border:0; padding:.7rem 1rem; border-radius:8px; cursor:pointer}
+    button:active{transform:translateY(1px)}
+
+    @media(min-width:720px){
+      .hero{display:flex; align-items:center; gap:2rem; text-align:left}
+      .hero .hero-text{flex:1}
+      .hero .hero-illustration{flex:1}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">MonSite</div>
+        <div>
+          <a href="#">Accueil</a>
+          &nbsp;|&nbsp;
+          <a href="#services">Services</a>
+          &nbsp;|&nbsp;
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Bienvenue sur MonSite</h1>
+          <p>Une page simple, propre et responsive — parfaite pour mon Lab de DevOps.</p>
+        </div>
+        <div class="hero-illustration">
+          <!-- Illustration basique en SVG -->
+          <svg width="160" height="100" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0" y="0" width="160" height="100" rx="12" fill="white" opacity="0.06"/>
+            <circle cx="40" cy="40" r="24" fill="white" opacity="0.12"/>
+            <rect x="80" y="24" width="60" height="12" rx="6" fill="white" opacity="0.12"/>
+            <rect x="80" y="46" width="36" height="10" rx="5" fill="white" opacity="0.12"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="services" class="grid">
+      <article class="card">
+        <h3>À propos</h3>
+        <p>Petit paragraphe pour présenter ton site ou ton activité. Remplace ce texte par ce que tu veux.</p>
+      </article>
+      <article class="card">
+        <h3>Services</h3>
+        <p>Liste des services ou fonctionnalités offertes. Exemple : création de site, design, développement.</p>
+      </article>
+      <article class="card">
+        <h3>Portfolio</h3>
+        <p>Ajoute des images ou des liens vers tes projets.</p>
+      </article>
+    </section>
+
+    <section id="contact" style="margin-top:1.5rem">
+      <div class="card">
+        <h3>Contacte-moi</h3>
+        <form onsubmit="handleSubmit(event)">
+          <label>
+            Nom
+            <input type="text" name="name" placeholder="Ton nom" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="ton@email.com" required />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="4" placeholder="Ton message..." required></textarea>
+          </label>
+          <div style="display:flex;gap:.5rem; justify-content:flex-end">
+            <button type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> MonSite — Tous droits réservés
+    </div>
+  </footer>
+
+  <script>
+    // Petit script pour gérer le formulaire localement
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function handleSubmit(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = {name: f.name.value, email: f.email.value, message: f.message.value};
+      // Ici on pourrait envoyer les données via fetch vers un serveur.
+      alert('Merci, '+data.name+" ! Ton message a été reçu (simulé).\nEmail: "+data.email);
+      f.reset();
+    }
+  </script>
+</body>
+</html>
