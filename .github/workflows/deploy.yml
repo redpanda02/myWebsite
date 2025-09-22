@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Run only when pushing to the main branch
+      - master 
 
 permissions:
   contents: read
@@ -17,11 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Upload your repository as the site content
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .  # This will upload your HTML file(s) from the root
+          path: . 
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
